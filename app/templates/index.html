@@ -5,13 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Crands Files</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=KoHo" rel="stylesheet">
 </head>
 <body>
-  <h1>File uploader</h1>
+  <header class="header">
+      <h1 class="header__title">File uploader</h1>
+      <p class="header__sub">Supports pdf, jpg, png, gif, and txt</p>
+  </header>  
 
-  <form method=post enctype=multipart/form-data>
-    <input type=file name=file>
-    <input type=submit value=Upload>
-  </form>
+  <main class="main">
+    <section class="files">
+        <h3>Your Files:</h3>
+        <ul class="list">
+            {% for file in files %}
+              <li class="list__li">
+                <a class="list__li-a"href="{{url_for('uploaded_file', filename=file)}}"> {{file}}</a>        
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+
+        <form class="form" method=post enctype=multipart/form-data>
+          <div>
+            <input class="form__input" type=file name=file>
+          </div>          
+          <div>
+              <input class="form__input" type=submit value=Upload>    
+          </div>          
+        </form>        
+    </main>
+  
+  
 </body>
 </html>

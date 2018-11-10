@@ -1,0 +1,63 @@
+:root {
+  --light: #FCFCFC;
+  --primary: #41295a;
+  --action: #256EFF;
+  --danger: #FF495C;
+  --comp: rgb(7, 179, 113);
+}
+
+body {
+  background: var(--primary);
+  background: #41295a;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2F0743, #41295a);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2F0743, #41295a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+  color: var(--light);
+  font-family: 'KoHo', sans-serif;  
+}
+
+.header {
+  text-align: center;
+}
+
+.header__title {
+  font-weight: 100;
+}
+
+.main {
+  /* outline: 6px dashed red; */
+  display: flex;
+  max-width: 500px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.form {  
+  /* outline: 3px dashed orange; */
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+.form__input {  
+  border: none;
+  border-radius: 2px;
+  padding: .25rem;
+  display: flex;
+  margin-bottom: 1rem;  
+}
+
+.form__input[type=submit] {
+  font-size: 1.2rem;
+  cursor: pointer;
+  background: var(--comp);
+  color: var(--light);
+}
+
+.list__li-a {
+  color: var(--light);
+}
