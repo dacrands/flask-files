@@ -1,24 +1,26 @@
 :root {
   --light: #FCFCFC;
-  --primary: #41295a;
+  --primary: #243A5C;
+  --primary-light: rgb(46, 77, 124);  
+  --primary-dark: #23222D;
   --action: #256EFF;
   --danger: #FF495C;
-  --comp: rgb(7, 179, 113);
+  --comp: rgb(6, 143, 91);
+  --comp-light: rgb(30, 175, 120);
 }
 
 body {
   background: var(--primary);
-  background: #41295a;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2F0743, #41295a);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2F0743, #41295a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
+  background: -webkit-linear-gradient(to right, var(--primary-dark), var(--primary));
+  background: linear-gradient(to right, var(--primary-dark), var(--primary)); 
   color: var(--light);
   font-family: 'KoHo', sans-serif;  
 }
 
 .header {
   text-align: center;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
 }
 
 .header__title {
@@ -27,7 +29,7 @@ background: linear-gradient(to right, #2F0743, #41295a); /* W3C, IE 10+/ Edge, F
 
 .main {
   /* outline: 6px dashed red; */
-  display: flex;
+  /* display: flex; */
   max-width: 500px;
   margin: 0 auto;
   align-items: center;
@@ -38,26 +40,61 @@ background: linear-gradient(to right, #2F0743, #41295a); /* W3C, IE 10+/ Edge, F
   /* outline: 3px dashed orange; */
   padding: 1rem;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-items: center;
   align-items: center;
+  border-radius: 2px;
 }
 
 .form__input {  
+  /* outline: 1px solid var(--comp); */
   border: none;
   border-radius: 2px;
   padding: .25rem;
   display: flex;
-  margin-bottom: 1rem;  
+  /* margin-bottom: 1rem;   */
 }
 
 .form__input[type=submit] {
-  font-size: 1.2rem;
   cursor: pointer;
   background: var(--comp);
   color: var(--light);
+  padding: 0.45rem;
 }
 
-.list__li-a {
+.form__input[type=submit]:hover {
+  background: var(--comp-light);
+  
+}
+
+.links {
+  /* outline: 4px solid blue; */
+  /* border: 2px solid var(--primary-dark); */
+  box-shadow: 0 0 1rem rgba(0,0,0,0.5);
+}
+
+.links__a {
+  /* text-align: center; */
+  display: block;
+  /* outline: 1px dashed black; */
+  padding: 0.45rem;
+  font-size: 1.2rem;
   color: var(--light);
+  text-decoration: none;
+}
+
+.links__a:hover {
+  background: var(--comp);
+}
+
+.links__item:first-of-type {
+  display: none;
+}
+
+.links__item {
+  background: var(--primary);
+}
+
+.links__item:nth-of-type(even) {
+  background: var(--primary-dark);
 }
