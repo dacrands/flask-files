@@ -18,13 +18,15 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
-        return '<User {}>'.format(self.username)
+        return '<User {}>'.format(self.email)
 
 
 class File(db.Model):
     id = db.Column(db.Integer, primary_key=True)    
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    name = db.Column(db.String(120))
     path = db.Column(db.String(240))
+    rel_path = db.Column(db.String(120))
     def __repr__(self):
         return '<File {}>'.format(self.path)
 

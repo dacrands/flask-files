@@ -15,6 +15,10 @@ body {
   background: linear-gradient(to right, var(--primary-dark), var(--primary)); 
   color: var(--light);
   font-family: 'KoHo', sans-serif;  
+}  
+
+a {
+  color: var(--light);
 }
 
 .center {
@@ -27,6 +31,11 @@ body {
   background: var(--comp);
   color: var(--light);
   padding: 0.45rem;
+  border-radius: 2px;
+}
+
+.btn:hover input[type=submit]{
+  background: var(--comp-light);
 }
 
 .flash {
@@ -36,9 +45,18 @@ body {
   border-radius: 3px;
 }
 
+.navbar {
+  padding: 1rem;
+}
+
 .navbar a {
   color: var(--light);
   margin-right: 1rem;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: var(--comp-light);
 }
 
 .header {

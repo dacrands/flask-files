@@ -19,7 +19,7 @@ def allowed_file(filename):
 @app.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
-    files = os.listdir(app.config['UPLOAD_FOLDER'])
+    files = current_user.files
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -31,17 +31,26 @@ def index():
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
-        if file and allowed_file(file.filename):
+        if file and allowed_file(file.filename):            
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            if not os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], str(current_user.id))):
+                os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'], str(current_user.id)))
+            user_file_path = os.path.join(app.config['UPLOAD_FOLDER'], str(current_user.id))
+            file.save(os.path.join(user_file_path, filename))
+            user_file = File(path=os.path.join(user_file_path, filename),
+                             rel_path=os.path.join(str(current_user.id), filename),
+                             name=filename,
+                             user_id=current_user.id)
+            db.session.add(user_file)
+            db.session.commit()
             return redirect(url_for('uploaded_file',
                                     filename=filename))
-    return render_template('index.html', files=files)
+    return render_template('index.html', files=files, user=current_user)
 
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'],
+    return send_from_directory(os.path.join(app.config['UPLOAD_FOLDER'], str(current_user.id)),
                                filename)
 
 
