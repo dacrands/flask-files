@@ -1,40 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Crands Files</title>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main.css') }}">
-  <link href="https://fonts.googleapis.com/css?family=KoHo" rel="stylesheet">
-</head>
-<body>
-  <header class="header">
-      <h1 class="header__title">File Uploader</h1>
-      <p class="header__sub">Supports pdf, jpg, png, gif, and txt</p>
-  </header>  
+{% extends "base.html" %}
 
+{% block content %}
   <main class="main">
-      <form class="form" method=post enctype=multipart/form-data required>
-        <div>
-          <input class="form__input" type=file name=file>
-        </div>          
-        <div>
-            <input class="form__input" type=submit value=Upload>    
-        </div>          
-      </form> 
+    <form class="form" method=post enctype=multipart/form-data required>
+      <div>
+        <input class="form__input" type=file name=file>
+      </div>
+      <div>
+        <input class="form__input" type=submit value=Upload>
+      </div>
+    </form>
     <section class="files">
-        <div class="links">
-            {% for file in files %}
-              <div class="links__item">
-                <a class="links__a"href="{{url_for('uploaded_file', filename=file)}}"> {{file}}</a>        
-              </div>
-            {% endfor %}
-          </div>
-        </section>
-       
-    </main>
-  
-  
-</body>
-</html>
+      <div class="links">
+        {% for file in files %}
+        <div class="links__item">
+          <a class="links__a" href="{{url_for('uploaded_file', filename=file)}}"> {{file}}</a>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+  </main>
+
+{% endblock %}

@@ -4,7 +4,7 @@
   --primary-light: rgb(46, 77, 124);  
   --primary-dark: #23222D;
   --action: #256EFF;
-  --danger: #FF495C;
+  --danger: rgb(209, 42, 59);
   --comp: rgb(6, 143, 91);
   --comp-light: rgb(30, 175, 120);
 }
@@ -15,6 +15,30 @@ body {
   background: linear-gradient(to right, var(--primary-dark), var(--primary)); 
   color: var(--light);
   font-family: 'KoHo', sans-serif;  
+}
+
+.center {
+  text-align: center;
+}
+
+.btn input[type=submit]{
+  cursor: pointer;
+  border: none;
+  background: var(--comp);
+  color: var(--light);
+  padding: 0.45rem;
+}
+
+.flash {
+  background: var(--danger);
+  list-style: none;  
+  padding: 1rem;
+  border-radius: 3px;
+}
+
+.navbar a {
+  color: var(--light);
+  margin-right: 1rem;
 }
 
 .header {
@@ -40,9 +64,9 @@ body {
   /* outline: 3px dashed orange; */
   padding: 1rem;
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   justify-items: center;
-  align-items: center;
+  /* align-items: center; */
   border-radius: 2px;
 }
 

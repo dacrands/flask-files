@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Crands Files</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=KoHo" rel="stylesheet">
+</head>
+
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flash">
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+  {% include "_nav.html" %}
+  <header class="header">
+    <h1 class="header__title">File Uploader</h1>
+    <p class="header__sub">Supports pdf, jpg, png, gif, and txt</p>
+  </header>
+  
+  {% block content %}{% endblock %}
+
+</body>
+
+</html>
