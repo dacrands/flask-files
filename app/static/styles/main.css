@@ -166,12 +166,6 @@ a {
   align-items: center;
 }
 
-.links__item:first-of-type {
-  display: none;
-  flex-grow: 2;
-}
-
-
 
 .links__item:nth-of-type(even) {
   background: var(--primary-dark);
