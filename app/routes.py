@@ -31,27 +31,46 @@ def index():
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
-        if file and allowed_file(file.filename):            
+        if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             if not os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], str(current_user.id))):
-                os.mkdir(os.path.join(app.config['UPLOAD_FOLDER'], str(current_user.id)))
-            user_file_path = os.path.join(app.config['UPLOAD_FOLDER'], str(current_user.id))
+                os.mkdir(os.path.join(
+                    app.config['UPLOAD_FOLDER'], str(current_user.id)))
+            user_file_path = os.path.join(
+                app.config['UPLOAD_FOLDER'], str(current_user.id))
             file.save(os.path.join(user_file_path, filename))
             user_file = File(path=os.path.join(user_file_path, filename),
-                             rel_path=os.path.join(str(current_user.id), filename),
+                             rel_path=os.path.join(
+                                 str(current_user.id), filename),
                              name=filename,
                              user_id=current_user.id)
             db.session.add(user_file)
             db.session.commit()
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
+            flash('File uploaded!')
+            return redirect(request.url)
     return render_template('index.html', files=files, user=current_user)
 
 
 @app.route('/uploads/<filename>')
+@login_required
 def uploaded_file(filename):
     return send_from_directory(os.path.join(app.config['UPLOAD_FOLDER'], str(current_user.id)),
                                filename)
+
+
+@app.route('/delete/<filename>')
+@login_required
+def delete_file(filename):
+    files = current_user.files
+    for f in files:
+        if f.name == filename:
+            db.session.delete(f)
+            db.session.commit()
+            os.remove(f.path)
+            flash('Removed file')
+            return redirect('/')
+    flash('File not found')
+    return redirect('/')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -61,7 +80,7 @@ def login():
 
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()        
+        user = User.query.filter_by(email=form.email.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
@@ -72,10 +91,12 @@ def login():
         return redirect(next_page)
     return render_template('login.html', form=form)
 
+
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

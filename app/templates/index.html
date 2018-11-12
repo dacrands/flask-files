@@ -14,7 +14,10 @@
       <div class="links">
         {% for file in files %}
         <div class="links__item">
-          <a class="links__a" href="{{url_for('uploaded_file', filename=file.name)}}"> {{file.name}}</a>
+          <a class="links__a" href="{{url_for('uploaded_file', filename=file.name)}}"> 
+            {{file.name}}
+          </a>
+          <a href="{{url_for('delete_file', filename=file.name)}}">Delete</a>
         </div>
         {% endfor %}
       </div>

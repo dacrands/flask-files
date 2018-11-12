@@ -9,6 +9,12 @@
   --comp-light: rgb(30, 175, 120);
 }
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background: var(--primary);
   background: -webkit-linear-gradient(to right, var(--primary-dark), var(--primary));
@@ -21,11 +27,16 @@ a {
   color: var(--light);
 }
 
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
 .center {
   text-align: center;
 }
 
-.btn input[type=submit]{
+.btn > input[type=submit]{
   cursor: pointer;
   border: none;
   background: var(--comp);
@@ -34,12 +45,12 @@ a {
   border-radius: 2px;
 }
 
-.btn:hover input[type=submit]{
+.btn:hover > input[type=submit]{
   background: var(--comp-light);
 }
 
 .flash {
-  background: var(--danger);
+  background: var(--comp);
   list-style: none;  
   padding: 1rem;
   border-radius: 3px;
@@ -92,9 +103,8 @@ a {
   /* outline: 1px solid var(--comp); */
   border: none;
   border-radius: 2px;
-  padding: .25rem;
   display: flex;
-  /* margin-bottom: 1rem;   */
+  margin-bottom: 1rem;  
 }
 
 .form__input[type=submit] {

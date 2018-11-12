@@ -11,17 +11,21 @@
 </head>
 
 <body>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul class="flash">
-      {% for message in messages %}
-      <li>{{ message }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
+  <div class="container">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul class="flash">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
+      {% include "_nav.html" %}
+  </div>
+    
 
-  {% include "_nav.html" %}
+  
   <header class="header">
     <h1 class="header__title">File Uploader</h1>
     <p class="header__sub">Supports pdf, jpg, png, gif, and txt</p>
