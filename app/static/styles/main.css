@@ -5,6 +5,7 @@
   --primary-dark: #23222D;
   --action: #256EFF;
   --danger: rgb(209, 42, 59);
+  --warning: rgb(150, 93, 19);
   --comp: rgb(6, 143, 91);
   --comp-light: rgb(30, 175, 120);
 }
@@ -36,24 +37,9 @@ a {
   text-align: center;
 }
 
-.delete {
-  height: 1rem;
-  /* float: right; */
-}
 
-.delete__container {
-  text-align: center;
-}
 
-.delete__container:hover {
-  background: var(--danger);
-}
 
-.delete__container img {
-  height: 100%;
-  max-height: 1rem;
-  padding: 1rem;
-}
 
 .btn > input[type=submit]{
   cursor: pointer;
@@ -162,10 +148,31 @@ a {
   background: var(--primary);
   /* display: flex; */
   display: grid;
-  grid-template-columns: 90% 1fr;
+  grid-template-columns: 80% 1fr 1fr;
   align-items: center;
 }
 
+.links__item-container {
+  text-align: center;
+}
+
+.links__item-container img {
+  height: 100%;
+  max-height: 1rem;
+  padding: 1rem;
+}
+
+.warning.links__item-container :hover {
+  background: var(--warning);
+}
+
+.danger.links__item-container :hover {
+  background: var(--danger);
+}
+
+.links__item-a {
+  height: 1rem;
+}
 
 .links__item:nth-of-type(even) {
   background: var(--primary-dark);

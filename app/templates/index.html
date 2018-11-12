@@ -17,8 +17,11 @@
           <a class="links__a" href="{{url_for('uploaded_file', filename=file.name)}}"> 
             {{file.name}}
           </a>
-          <a class="delete__container" href="{{url_for('delete_file', filename=file.name)}}">
-            <img class="delete" src="../static/images/rubbish-bin.svg" alt="delete file">
+          <a class="links__item-container warning" href="{{url_for('uploaded_file', filename=file.name)}}" download>
+            <img class="links__item-a" src="../static/images/download.svg" alt="download file">
+          </a>
+          <a class="links__item-container danger" href="{{url_for('delete_file', filename=file.name)}}">
+            <img class="links__item-a" src="../static/images/rubbish-bin.svg" alt="delete file">
           </a>
         </div>
         {% endfor %}
