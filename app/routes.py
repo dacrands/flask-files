@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.urls import url_parse
 from app import app, db
 from app.models import User, File
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, DeleteUserForm
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
@@ -93,6 +93,7 @@ def login():
 
 
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('index'))
@@ -111,3 +112,18 @@ def register():
         flash('Thanks!')
         return(redirect(url_for('login')))
     return render_template('register.html', form=form)
+
+@app.route('/delete_user', methods=['GET', 'POST'])  
+@login_required  
+def delete_user():
+    form = DeleteUserForm()
+    if form.validate_on_submit():
+        if current_user.check_password(form.password.data):
+            user = User.query.filter_by(id=current_user.id).first()
+            db.session.delete(user)
+            db.session.commit()
+            flash('Account deleted.')
+            return(redirect('/'))
+        flash('That password does not seem to match')
+        return render_template('delete_user.html', form=form)        
+    return render_template('delete_user.html', form=form)

@@ -4,7 +4,8 @@
   --primary-light: rgb(46, 77, 124);  
   --primary-dark: #23222D;
   --action: #256EFF;
-  --danger: rgb(250, 91, 91);
+  --danger: rgb(219, 61, 61);
+  --danger-light: rgb(236, 88, 88);
   --warning: rgb(243, 151, 30);
   --comp: rgb(6, 143, 91);
   --comp-light: rgb(30, 175, 120);
@@ -27,6 +28,26 @@ body {
 a {
   color: var(--light);
 }
+
+footer {
+  position: absolute;
+  bottom: 0;  
+  left: 0;
+  right: 0;
+  padding: 1em;
+  font-size: 0.75rem;
+}
+
+footer a {
+  float: right;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+
 
 .container {
   max-width: 960px;
@@ -53,6 +74,15 @@ a {
 .btn:hover > input[type=submit]{
   background: var(--comp-light);
 }
+
+.btn--danger input[type=submit]{
+  background: var(--danger);
+}
+
+.btn--danger:hover > input[type=submit]{
+  background: var(--danger-light);
+}
+
 
 .flash {
   background: var(--comp);
@@ -140,7 +170,7 @@ a {
   display: block;
   /* outline: 1px dashed black; */
   padding: 0.9rem;
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
   color: var(--light);
   text-decoration: none;
 }

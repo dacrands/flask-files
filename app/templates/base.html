@@ -33,6 +33,19 @@
   
   {% block content %}{% endblock %}
 
+  <footer>
+    <div class="container">
+        {% if user %}
+        <a href="/delete_user">
+          Delete profile
+        </a>
+        {% else %}
+
+        {% endif %}
+     
+      
+    </div>    
+  </footer>
 </body>
 
 </html>
