@@ -1,9 +1,9 @@
 <nav class="navbar">
   {% if user %}
-  <a href="/logout">Logout</a>
+  <a href="{{url_for('logout')}}">Logout</a>
   {% else %}
-  <a href="/">Home</a>
-  <a href="/login">Login</a>
-  <a href="/register">Register</a>
+  <a href="{{url_for('index')}}">Home</a>
+  <a href="{{url_for('login')}}">Login</a>
+  <a href="{{url_for('register')}}">Register</a>
   {% endif %}
 </nav>

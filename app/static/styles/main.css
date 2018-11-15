@@ -54,8 +54,11 @@ footer a:hover {
   margin: 0 auto;
   padding: 0 1rem;
 }
-.center {
-  text-align: center;
+.flex--center {  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -71,7 +74,7 @@ footer a:hover {
   border-radius: 2px;
 }
 
-.btn:hover > input[type=submit]{
+.btn > input[type=submit]:hover{
   background: var(--comp-light);
 }
 
@@ -79,14 +82,19 @@ footer a:hover {
   background: var(--danger);
 }
 
-.btn--danger:hover > input[type=submit]{
+.btn--danger > input[type=submit]:hover {
   background: var(--danger-light);
 }
 
 
 .flash {
-  background: var(--comp);
+  padding: 0;
   list-style: none;  
+  
+}
+
+.flash li {
+  background: var(--comp);
   padding: 1rem;
   border-radius: 3px;
 }
