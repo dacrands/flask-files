@@ -35,11 +35,16 @@ footer {
   left: 0;
   right: 0;
   padding: 1em;
-  font-size: 0.75rem;
+  /* font-size: 0.75rem; */
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 footer a {
-  float: right;
   text-decoration: none;
 }
 
@@ -89,8 +94,15 @@ footer a:hover {
 
 .flash {
   padding: 0;
-  list-style: none;  
-  
+  list-style: none;   
+}
+
+.flash__close {
+  background: none;
+  border: none;
+  border-right: 0.5rem;
+  color: var(--light);
+  cursor: pointer;
 }
 
 .flash li {
@@ -122,6 +134,8 @@ footer a:hover {
 
 .header__title {
   font-weight: 100;
+  font-size: 400%;
+  margin-bottom: 1rem;
 }
 
 .main {

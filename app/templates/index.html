@@ -14,16 +14,16 @@
       <div class="links">
         {% for file in files %}
         <div class="links__item">
-          <a class="links__a" href="{{url_for('uploaded_file', filename=file.name)}}"> 
+          <a title="open file" class="links__a" href="{{url_for('uploaded_file', filename=file.name)}}"> 
             {{file.name}}
           </a>
-          <a class="links__item-container warning" href="{{url_for('uploaded_file', filename=file.name)}}" download>
+          <a title="download" class="links__item-container warning" href="{{url_for('uploaded_file', filename=file.name)}}" download>
             <div>
                 <img class="links__item-a" src="../static/images/download.svg" alt="download file">
                 <p>Download</p>
             </div>          
           </a>
-          <a class="links__item-container danger" href="{{url_for('delete_file', filename=file.name)}}">
+          <a title="delete" class="links__item-container danger" href="{{url_for('delete_file', filename=file.name)}}">
             <div>
                 <img class="links__item-a" src="../static/images/rubbish-bin.svg" alt="delete file">
                 <p>Delete</p>

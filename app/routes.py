@@ -8,7 +8,7 @@ from app import app, db
 from app.models import User, File
 from app.forms import LoginForm, RegistrationForm, DeleteUserForm
 
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'docx', 'xlsx'])
 
 
 def allowed_file(filename):
@@ -33,6 +33,15 @@ def index():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
+            # see if user has file of same name
+            # if so, prompt them to rename the file
+            print(filename)
+            print([file.name for file in files])
+            for f in files:                
+                if f.name == filename:
+                    flash('You already have a file with that name! Please rename your file and upload.')
+                    return redirect(url_for('index'))
+            # make user's dir using ID
             if not os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], str(current_user.id))):
                 os.mkdir(os.path.join(
                     app.config['UPLOAD_FOLDER'], str(current_user.id)))

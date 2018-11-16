@@ -12,40 +12,61 @@
 
 <body>
   <div class="container">
-      {% with messages = get_flashed_messages() %}
-      {% if messages %}
-      <ul class="flash">
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-      {% endwith %}
-      {% include "_nav.html" %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flash">
+      {% for message in messages %}
+      <li><button class="flash__close">&#10006;</button>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% include "_nav.html" %}
   </div>
-    
 
-  
+
+
   <header class="header">
     <h1 class="header__title">File Uploader</h1>
     <p class="header__sub">Supports pdf, jpg, png, gif, and txt</p>
   </header>
-  
+
   {% block content %}{% endblock %}
 
   <footer>
-    <div class="container">
+    <small>
+      <div class="container">
         {% if user %}
         <a href="/delete_user">
           Delete profile
         </a>
         {% else %}
-
-        {% endif %}
-     
-      
-    </div>    
+        {% endif %}      
+      <p>
+          &#x24B8; 
+          <a href="https://dcrands.com">David Crandall</a>          
+      </p>
+    </div>
+    </small>    
   </footer>
+
+  <script>
+    const flashClosers = document.querySelectorAll('.flash__close');
+    const flashMsgs = document.querySelectorAll('.flash li');
+      setTimeout(() => {
+        if (flashMsgs.length > 1) {
+          flashClosers.forEach((closer, index) => {
+            closer.addEventListener('click', () => {
+              flashMsgs[index].style.display = "none";
+            })
+          });
+        } else {
+          flashClosers[0].addEventListener('click', () => {
+            flashMsgs[0].style.display = "none";
+          });
+        };
+      }, 500)
+  </script>
 </body>
 
 </html>
