@@ -35,8 +35,6 @@ def index():
             filename = secure_filename(file.filename)
             # see if user has file of same name
             # if so, prompt them to rename the file
-            print(filename)
-            print([file.name for file in files])
             for f in files:                
                 if f.name == filename:
                     flash('You already have a file with that name! Please rename your file and upload.')
@@ -86,7 +84,6 @@ def delete_file(filename):
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
-
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()

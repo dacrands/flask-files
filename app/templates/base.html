@@ -27,32 +27,40 @@
 
 
   <header class="header">
-    <h1 class="header__title">File Uploader</h1>
-    <p class="header__sub">Supports pdf, jpg, png, gif, and txt</p>
+    {% if user %}
+      <h1>You have <span id="numFiles">{{files.count()}}</span> files</h1>
+    {% else %}
+      <h1 class="header__title">File Uploader</h1>
+      <p class="header__sub">Supports pdf, jpg, png, gif, and txt</p>
+    {% endif %}
   </header>
 
   {% block content %}{% endblock %}
 
-  <footer>
+  <footer class="footer">
     <small>
       <div class="container">
         {% if user %}
+        Saying goodbye?
         <a href="/delete_user">
-          Delete profile
+          Delete your account.
         </a>
         {% else %}
-        {% endif %}      
-      <p>
-          &#x24B8; 
-          <a href="https://dcrands.com">David Crandall</a>          
-      </p>
-    </div>
+        {% endif %}              
+          <small>
+              <p>
+                2018 &#x24B8; 
+                <a title="David's website" href="https://dcrands.com">David Crandall</a>          
+              </p>
+          </small>          
+        </div>
     </small>    
   </footer>
 
   <script>
     const flashClosers = document.querySelectorAll('.flash__close');
     const flashMsgs = document.querySelectorAll('.flash li');
+    
       setTimeout(() => {
         if (flashMsgs.length > 1) {
           flashClosers.forEach((closer, index) => {
@@ -64,8 +72,9 @@
           flashClosers[0].addEventListener('click', () => {
             flashMsgs[0].style.display = "none";
           });
-        };
-      }, 500)
+        };        
+      }, 500)   
+
   </script>
 </body>
 

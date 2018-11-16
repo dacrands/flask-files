@@ -29,27 +29,20 @@ a {
   color: var(--light);
 }
 
-footer {
+.footer {
   position: absolute;
   bottom: 0;  
   left: 0;
-  right: 0;
-  padding: 1em;
+  right: 0;  
+  background: var(--primary-dark);
+  padding: 0.45rem 1rem;
+  margin-top: 2rem;
+  text-align: center;
   /* font-size: 0.75rem; */
 }
 
-footer .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-footer a {
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
+.footer a:hover {
+  color: var(--comp-light)
 }
 
 
@@ -180,7 +173,7 @@ footer a:hover {
 .links {
   /* outline: 4px solid blue; */
   /* border: 2px solid var(--primary-dark); */
-  box-shadow: 0 0 1rem rgba(0,0,0,0.5);
+  box-shadow: 0 0 1rem rgba(0,0,0,0.3);
 }
 
 .links a {
