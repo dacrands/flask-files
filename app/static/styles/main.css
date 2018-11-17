@@ -166,9 +166,40 @@ a {
 }
 
 .form__input[type=submit]:hover {
-  background: var(--comp-light);
-  
+  background: var(--comp-light);  
 }
+
+#fileElem {
+  display: none;
+}
+
+#fileSelect {
+  background: none;
+  padding: 0.75rem;
+  margin: 1rem 0;
+  border-radius: 2px;
+  /* border: 1px solid var(--comp); */
+  border: none;
+  color: var(--light);
+  background: var(--primary);
+  cursor: pointer;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.3);
+  transition: all 200ms ease;  
+}
+
+#fileSelect:hover {
+  box-shadow: 0 0 2rem rgba(0,0,0,0.3);
+  transform: translateY(-0.07rem);
+  background: var(--primary-light);
+}
+
+.file__name {
+  padding: 0.45rem;
+  margin: 0.75rem 0; 
+  background: var(--primary);
+}
+
+
 
 .links {
   /* outline: 4px solid blue; */

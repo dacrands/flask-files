@@ -1,39 +1,67 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <main class="main">
-    <form class="form" method=post enctype=multipart/form-data required>
-      <div>
-        <input class="form__input" type=file name=file>
-      </div>
-      <div>
-        <input class="form__input" type=submit value=Upload>
-      </div>
-    </form>
-    <section class="files">
-      <div class="links">
-        {% for file in files %}
-        <div class="links__item">
-          <a title="open file" class="links__a" href="{{url_for('uploaded_file', filename=file.name)}}"> 
-            {{file.name}}
-          </a>
-          <a title="download" class="links__item-container warning" href="{{url_for('uploaded_file', filename=file.name)}}" download>
-            <div>
-                <img class="links__item-a" src="../static/images/download.svg" alt="download file">
-                <p>Download</p>
-            </div>          
-          </a>
-          <a title="delete" class="links__item-container danger" href="{{url_for('delete_file', filename=file.name)}}">
-            <div>
-                <img class="links__item-a" src="../static/images/rubbish-bin.svg" alt="delete file">
-                <p>Delete</p>
-            </div>            
-          </a>
-        </div>
-        {% endfor %}
-      </div>
-    </section>
+<main class="main">
+  <form class="form" method="post" enctype=multipart/form-data> 
+    <div>
+      <div id="fileList">
 
-  </main>
+      </div>
+      <input onchange="handleFiles(this.files)" id="fileElem" multiple class="form__input" type=file name=file>
+      <button type="button" id="fileSelect">Select file(s)</button>
+    </div>
+    <div>
+      <input class="form__input" type=submit value=Upload>
+    </div>
+  </form>
+  <section class="files">
+    <div class="links">
+      {% for file in files %}
+      <div class="links__item">
+        <a title="open file" class="links__a" href="{{url_for('uploaded_file', filename=file.name)}}">
+          {{file.name}}
+        </a>
+        <a title="download" class="links__item-container warning" href="{{url_for('uploaded_file', filename=file.name)}}"
+          download>
+          <div>
+            <img class="links__item-a" src="../static/images/download.svg" alt="download file">
+            <p>Download</p>
+          </div>
+        </a>
+        <a title="delete" class="links__item-container danger" href="{{url_for('delete_file', filename=file.name)}}">
+          <div>
+            <img class="links__item-a" src="../static/images/rubbish-bin.svg" alt="delete file">
+            <p>Delete</p>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+</main>
 
+<script>
+  const fileSelect = document.getElementById("fileSelect");
+  const fileElem = document.getElementById("fileElem");
+  const fileList = document.getElementById("fileList");
+  
+  fileSelect.addEventListener("click", function (e) {
+    if (fileElem) {
+      fileElem.click();
+    }
+  }, false);
+
+  function handleFiles() {
+    var fileList = this.files; /* now you can work with the file list */
+  };
+
+  fileElem.addEventListener('change', (e) => {
+    Array.from(e.target.files).forEach(file => {
+      let fileSpan = document.createElement('p');
+      fileSpan.className = "file__name";
+      fileSpan.innerHTML = file.name;
+      fileList.appendChild(fileSpan);
+    });
+  });
+</script>
 {% endblock %}
